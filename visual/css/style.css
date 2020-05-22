@@ -1,0 +1,144 @@
+        [v-cloak] {
+            display: none;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        #logo {
+            margin: 0 auto;
+            padding: 0;
+            font-size: 3vw;
+            text-align: center;
+            color: #e39777;
+        }
+        
+        .map {
+            width: 50%;
+            margin-left: 10%;
+            height: 800px;
+            float: left;
+            text-align: center;
+        }
+        
+        .detail {
+            width: 20%;
+            height: 800px;
+            float: left;
+            text-align: center;
+        }
+        
+        .events {
+            width: 60%;
+            height: auto;
+            margin-left: 20%;
+            float: left;
+        }
+        
+        .event {
+            background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 3px;
+        }
+        
+        .title ul {
+            list-style-type: none;
+            padding: 0px;
+            float: left;
+            position: relative;
+        }
+        
+        .title ul li {
+            width: 220px;
+            height: 56px;
+            text-align: center;
+            float: left;
+        }
+        
+        .title ul li a {
+            color: #848789;
+            text-decoration: none;
+            line-height: 56px;
+        }
+        
+        .title ul a:hover {
+            color: #0ab2d2;
+        }
+        
+        .title .move {
+            height: 4px;
+            width: 220px;
+            border-top: 4px solid #0ab2d2;
+            /*只需要将上边显示出来*/
+            position: absolute;
+            left: 0;
+            top: 52px;
+            transition: left .2s ease-in-out 0s;
+            /*包含四个过度属性：执行变换属性、执行时间、速率、延迟*/
+            -webkit-transition: left .2s ease-in-out 0s;
+            /*chrome和safari*/
+            -moz-transition: left .2s ease-in-out 0s;
+            /*firefox*/
+            -o-transition: left .2s ease-in-out 0s;
+            /*opera*/
+        }
+        
+        li:nth-child(1):hover~.move {
+            /*li元素的父元素的第一个子元素，当鼠标停留其上时，move元素的left属性改变*/
+            left: 0px;
+        }
+        
+        li:nth-child(2):hover~.move {
+            left: 220px;
+        }
+        
+        li:nth-child(3):hover~.move {
+            left: 440px;
+        }
+        
+        div.search {
+            padding: 30px 0
+        }
+        
+        form {
+            position: relative;
+            width: 500px;
+            margin: 0 auto;
+        }
+        
+        .d1 {
+            width: 60%;
+            margin: 0 auto;
+        }
+        
+        .d1 input {
+            width: 40%;
+            height: 42px;
+            padding-left: 10px;
+            border: 2px solid #7BA7AB;
+            border-radius: 5px;
+            outline: none;
+            background: #F9F0DA;
+            color: #9E9C9C;
+        }
+        
+        .d1 button {
+            position: relative;
+            top: 0;
+            right: 0px;
+            width: 42px;
+            height: 42px;
+            border: none;
+            background: #7BA7AB;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .d1 button:before {
+            content: "\f002";
+            font-family: FontAwesome;
+            font-size: 16px;
+            color: #F9F0DA;
+        }

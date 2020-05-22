@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交通事件舆情可视化平台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/dark.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/darkly/bootstrap.min.css" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="main" style="background-color: #262b2e;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">交通事件舆情可视化平台</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="all_events.html">所有事件</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search_result.html">搜索<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div style="clear:both"></div>
+        <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="从此搜索交通事件" v-model="keyword" style="width: 30%;">
+            <button class="btn btn-secondary my-2 my-sm-0" @click="search">搜索</button>
+        </div>
+        <div class="card text-white bg-primary mb-3" style="width: 60%;margin-left: 20%;float: left;" v-for="event in events">
+            <div class="card-header">{{event.event_name}}</div>
+            <div class="card-body">
+                <h4 class="card-title">地点：{{event.location}} <br>时间:{{event.time}}</h4>
+                <p class="card-text">详细情况:{{event.detail}}</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#main",
+            data: {
+                events: [],
+                keyword: ""
+            },
+            methods: {
+                search() {
+                    console.log("123")
+                    console.log("http://rensz.xyz:5000/event/search?event_name=" + this.keyword)
+                    axios.get('http://rensz.xyz:5000/event/search?event_name=' + this.keyword).then(res => {
+                            console.log(res.data.result);
+                            if (res.data.result.length == 0) {
+                                alert("找不到相关事件！");
+                            } else {
+                                this.events = res.data.result;
+                            }
+                        },
+                        function(err) {
+                            console.log(err)
+                        })
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>
